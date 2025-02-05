@@ -4,6 +4,7 @@ import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { IoMdAddCircle } from "react-icons/io";
 import "./ToGet.css"
+import { useNavigate } from "react-router-dom";
 
 const ToGet = ()=>{
 
@@ -17,6 +18,15 @@ const ToGet = ()=>{
     useEffect(()=>{
         getData()
     },[])
+
+    const navigate = useNavigate();
+
+    const deleted= async(id)=>{
+        await axios.delete(`http://localhost:5000/api/delete/${id}`)
+        getData()
+    }
+
+
 
     return(
         <div className="main">
@@ -36,8 +46,8 @@ const ToGet = ()=>{
                             <tr key={item._id}>
                                 <td>{item.task}</td>
                                 <td>{item.details}</td>
-                                <td><button className="editbtn">Edit <FaEdit/></button>
-                                <button className="deletebtn">Delete <MdDelete/></button>
+                                <td><button onClick={()=>{navigate(`/update/${item._id}`)}} className="editbtn">Edit <FaEdit/></button>
+                                <button onClick={()=>{deleted(item._id)}} className="deletebtn">Delete <MdDelete/></button>
                                 </td>
                             </tr>
                         )
@@ -46,7 +56,7 @@ const ToGet = ()=>{
             </tbody>
         </table>
 
-        <button className="createbtn">Create<IoMdAddCircle/></button>
+        <button onClick={()=>{navigate('/create')}} className="createbtn" >Create<IoMdAddCircle/></button>
         </div>
     )
 }

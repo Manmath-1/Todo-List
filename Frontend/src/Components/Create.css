@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.create {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 60vh;
+    margin: auto;
+    width: 55%;
+}
+.create form{
+    margin: 30% auto 1px auto;
+    width: 45%;
+}
+.create form label{
+    display: inline-block;
+    width: 20%;
+
+}
+.create input{
+    border:1.6px solid black ; 
+    border-Radius:4px;
+    padding: 3px;
+    margin: 5px;
+    width: 64%;
+    outline: none;
+}
+
+.submitbtn{
+    background-color: #4cfe4c;
+    border-Radius: 7px;
+    padding: 5px 8px;
+    margin: 5% 42%;
+    cursor: pointer;
+}
+
+.homebtn{
+    background-color: #4c4cfe;
+    border-Radius: 7px;
+    padding: 5px 8px;
+    margin: 5px;
+    cursor: pointer;
+}

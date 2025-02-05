@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import ToGet from './Components/ToGet'
 import Create from './Components/Create'
+import Update from './Components/Update'
 
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
 
       <Route path='/' element={<ToGet/>} />
       <Route path='/create' element={<Create/>} />
-      <Route path='/update' element={<h1>Update</h1>} />
+      <Route path='/update/:id' element={<Update/>} />
+      
       
     </Routes>
 

@@ -1,26 +1,36 @@
-import axios from 'axios';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import ('./Create.css');
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-const Create = ()=>{
+const Update = () =>{
 
     const [task, setTask] = useState('');
     const [details, setDetails] = useState('');
+    // const [todo, setTodo] = useState([]);
 
-    const sendData = async(e)=>{
+    const {id} = useParams();
+    const getData = async()=>{
+        const res = await axios.get(`http://localhost:5000/api/${id}`)
+        setTask(res.data.task)
+        setDetails(res.data.details)
+    };
+
+    useEffect(()=>{
+        getData()
+    },[])
+
+    const updateData = async(e)=>{
         e.preventDefault();
-        await axios.post('http://localhost:5000/api/add', {task,details})
+        await axios.put(`http://localhost:5000/api/update/${id}`, {task,details})
         setTask('');
         setDetails('');
-        alert('Task Added Successfully');
+        alert('Task Updated Successfully');
     }
 
     const navigate = useNavigate();
-
     return(
         <div className="create">
-            <form action="" onSubmit={sendData}>
+            <form action="" onSubmit={updateData}>
                 <label htmlFor="task">Task😉:</label>
                 <input value={task} type="text" id='task' placeholder='Enter Your Task Here...' onChange={(e)=>{setTask(e.target.value)}} />
                 <label htmlFor="details">Details😊:</label>
@@ -32,4 +42,4 @@ const Create = ()=>{
     )
 }
 
-export default Create;
+export default Update;

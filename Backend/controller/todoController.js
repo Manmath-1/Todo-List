@@ -9,6 +9,16 @@ exports.getTodos = async (req,res)=>{
     }
 }
 
+exports.getspecificTodo = async (req,res)=>{
+    const {id}=req.params;
+    try {
+        const todo = await Todo.findById(id);
+        res.status(200).json(todo);
+    } catch (error) {
+        res.status(500).json({error:"Internal server error"})
+    }
+}
+
 exports.createTodo= async (req,res)=>{
     const {task, details}=req.body;
     try {
